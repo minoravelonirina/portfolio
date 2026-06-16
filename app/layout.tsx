@@ -13,20 +13,7 @@ export const metadata: Metadata = {
   title: 'Minosoa Ravelonirina | Full Stack Developer',
   description: 'Full Stack Junior Developer - Specialized in Modern Web Development, Cloud Architecture, and DevOps Practices. Passionate about building scalable applications and automating deployment workflows.',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
+    icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
     apple: '/apple-icon.png',
   },
 }

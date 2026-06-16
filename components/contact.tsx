@@ -9,21 +9,41 @@ export default function Contact() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [isSending, setIsSending] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormState((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formState)
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
+    setIsSending(true)
+    setSubmitted(false)
+    setError('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      })
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => null)
+        throw new Error(data?.error ?? 'Unable to send your message.')
+      }
+
+      setSubmitted(true)
       setFormState({ name: '', email: '', message: '' })
-    }, 3000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unable to send your message.')
+    } finally {
+      setIsSending(false)
+    }
   }
 
   return (
@@ -182,14 +202,21 @@ export default function Contact() {
 
               <button
                 type="submit"
+                disabled={isSending}
                 className="w-full rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700 active:scale-95"
               >
-                Send Message
+                {isSending ? 'Sending...' : 'Send Message'}
               </button>
 
               {submitted && (
                 <div className="rounded-lg bg-green-500/10 p-4 text-green-400">
                   Thanks for reaching out! I&apos;ll get back to you soon.
+                </div>
+              )}
+
+              {error && (
+                <div className="rounded-lg bg-red-500/10 p-4 text-red-400">
+                  {error}
                 </div>
               )}
             </form>
