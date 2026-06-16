@@ -9,15 +9,15 @@ const skillCategories = [
   },
   {
     title: 'Frontend Development',
-    skills: ['React', 'Next.js', 'HTML/CSS', 'Tailwind CSS', 'JavaScript', 'TypeScript'],
+    skills: ['React', 'Next.js', 'Tailwind CSS', 'JavaScript', 'TypeScript'],
   },
   {
     title: 'Cloud & DevOps',
-    skills: ['Docker', 'Kubernetes', 'AWS', 'GCP', 'GitLab CI', 'ArgoCD', 'Jenkins', 'Helm'],
+    skills: ['Docker', 'Kubernetes', 'AWS', 'GCP', 'GitLab CI', 'Terraform'],
   },
   {
     title: 'Databases & Tools',
-    skills: ['PostgreSQL', 'MySQL', 'Git', 'Linux', 'Jenkins', 'Docker Compose', 'AWS Services'],
+    skills: ['PostgreSQL', 'MySQL', 'Git', 'Linux', 'Figma'],
   },
 ]
 
@@ -59,7 +59,7 @@ export default function Skills() {
               key={index}
               id={`skill-${index}`}
               data-skill-category
-              className={`group transform rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100`}
+              className={`group transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100`}
             >
               <h3 className="mb-6 text-lg font-semibold text-white">{category.title}</h3>
               <div className="space-y-3">
@@ -68,7 +68,7 @@ export default function Skills() {
                     key={i}
                     className="flex items-center gap-2 transition duration-300 translate-x-0 opacity-100"
                   >
-                    <span className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-500" />
+                    <span className="h-2 w-2 rounded-full bg-linear-to-r from-blue-400 to-purple-500" />
                     <span className="text-sm text-white/80">{skill}</span>
                   </div>
                 ))}

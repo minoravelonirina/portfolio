@@ -4,32 +4,45 @@ import { useState, useEffect } from 'react'
 
 const projects = [
   {
-    title: 'Highly Available WordPress',
-    description: 'Complete containerization and deployment of WordPress with automated CI/CD pipeline.',
-    technologies: ['Docker', 'GitLab CI', 'WordPress', 'Docker Compose'],
-    highlights: ['Automated Build & Test', 'Multi-environment Setup', 'Reproducible Infrastructure'],
-    icon: '📱',
+    title: 'Python CI/CD avec GitLab et Docker',
+    description:
+      'Application Python volontairement minimale servant de support a une pipeline CI/CD complete sur GitLab CI, avec lint, tests, build et conteneurisation Docker.',
+    technologies: ['Python', 'GitLab CI', 'Docker', 'Flake8', 'Pytest'],
+    highlights: [
+      'Pipeline GitLab CI en trois stages: lint, test, build',
+      'Analyse statique du code Python avant validation',
+      'Execution des tests unitaires avec Pytest',
+      'Construction automatique de l image Docker',
+    ],
+    icon: 'CI',
   },
   {
-    title: 'Cloud OwnCloud Deployment',
-    description: 'Scalable cloud architecture deployment on AWS with database externalization.',
-    technologies: ['AWS', 'EC2', 'RDS', 'S3', 'MySQL'],
-    highlights: ['Auto-scaling', 'Database Backup', 'Cloud Storage Integration'],
-    icon: '☁️',
+    title: 'Mino Skincare',
+    description:
+      'Full-stack skincare E-commerce application combining a brand showcase website with product catalog, authentication, cart management, orders, and a documented REST API.',
+    technologies: ['Next.js', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Docker', 'OpenAPI'],
+    highlights: [
+      'Catalogue produit responsive',
+      'Authentification JWT',
+      'Gestion du panier et des commandes',
+      'Modelisation Prisma',
+      'Documentation OpenAPI',
+    ],
+    icon: 'EC',
   },
   {
-    title: 'Marina - AI Translation App',
+    title: 'Hazavao - AI Translation App',
     description: 'Intelligent translation application integrating ChatGPT API with containerized deployment.',
     technologies: ['Java', 'ChatGPT API', 'Docker', 'Backend Integration'],
     highlights: ['API Integration', 'Container Packaging', 'Data Stream Management'],
-    icon: '🤖',
+    icon: 'AI',
   },
   {
     title: 'PicoCTF 2026 Challenge',
     description: 'Cybersecurity challenge completion with custom automation scripts.',
     technologies: ['Python', 'Scripting', 'Security Analysis', 'Linux'],
     highlights: ['Custom Automation', 'Vulnerability Analysis', 'System Hardening'],
-    icon: '🔐',
+    icon: 'CTF',
   },
 ]
 
@@ -69,9 +82,11 @@ export default function Projects() {
               key={index}
               id={`project-${index}`}
               data-project
-              className={`group transform rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100`}
+              className="group transform rounded-2xl border border-white/10 bg-linear-to-br from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100"
             >
-              <div className="mb-4 text-5xl">{project.icon}</div>
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl border border-blue-500/30 bg-blue-500/10 text-sm font-bold text-blue-300">
+                {project.icon}
+              </div>
               <h3 className="mb-3 text-2xl font-semibold text-white">{project.title}</h3>
               <p className="mb-6 text-white/70">{project.description}</p>
 

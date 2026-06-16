@@ -1,31 +1,23 @@
 'use client'
 
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 const services = [
   {
-    title: 'Full Stack Development',
-    description: 'Building complete web applications with modern frontend frameworks and scalable backend solutions.',
-    icon: '🚀',
-    details: ['React & Next.js', 'Node.js & Java', 'API Design', 'Database Architecture'],
+    title: 'Frontend Development',
+    description: 'Creating responsive, accessible, and polished interfaces with modern web technologies.',
+    image: '/frontend.jpg',
   },
   {
-    title: 'Cloud Infrastructure',
-    description: 'Designing and deploying scalable cloud architectures on AWS and GCP with best practices.',
-    icon: '☁️',
-    details: ['AWS (EC2, RDS, S3)', 'Google Cloud Platform', 'Cloud Security', 'Cost Optimization'],
+    title: 'Backend Development',
+    description: 'Building reliable APIs, server-side features, and data flows for scalable applications.',
+    image: '/backend.jpg',
   },
   {
     title: 'DevOps & Automation',
-    description: 'Creating robust CI/CD pipelines and containerized solutions with Docker and Kubernetes.',
-    icon: '⚙️',
-    details: ['Docker & Kubernetes', 'GitLab CI/CD', 'ArgoCD', 'Infrastructure as Code'],
-  },
-  {
-    title: 'System Administration',
-    description: 'Managing Linux systems, monitoring, and ensuring optimal performance and security.',
-    icon: '🔧',
-    details: ['Linux Administration', 'System Monitoring', 'Security Hardening', 'Performance Tuning'],
+    description: 'Automating deployment workflows and preparing applications for cloud-native environments.',
+    image: '/devops.jpg',
   },
 ]
 
@@ -56,32 +48,32 @@ export default function Services() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">Services</h2>
-          <p className="mb-16 text-lg text-white/60">Comprehensive solutions for modern development challenges</p>
+          <p className="mb-16 text-lg text-white/60">
+            Focused solutions across web development, backend systems, and deployment automation
+          </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-3">
           {services.map((service, index) => (
             <div
               key={index}
               id={`service-${index}`}
               data-service-card
-              className={`group transform rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100 ${
-                visibleCards.has(`service-${index}`)
-                  ? 'translate-y-0'
-                  : ''
+              className={`group transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100 ${
+                visibleCards.has(`service-${index}`) ? 'translate-y-0' : ''
               }`}
             >
-              <div className="mb-4 text-4xl">{service.icon}</div>
+              <div className="mb-6 overflow-hidden rounded-xl border border-white/10 bg-white/5">
+                <Image
+                  src={service.image}
+                  alt={service.title}
+                  width={480}
+                  height={320}
+                  className="aspect-3/2 w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </div>
               <h3 className="mb-3 text-xl font-semibold text-white">{service.title}</h3>
-              <p className="mb-6 text-white/60">{service.description}</p>
-              <ul className="space-y-2">
-                {service.details.map((detail, i) => (
-                  <li key={i} className="flex items-center gap-2 text-sm text-white/50">
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-                    {detail}
-                  </li>
-                ))}
-              </ul>
+              <p className="text-white/60">{service.description}</p>
             </div>
           ))}
         </div>

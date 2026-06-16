@@ -23,14 +23,15 @@ export default function Hero() {
               </span>
             </h1>
             <p className="mb-8 text-lg leading-relaxed text-white/70">
-              Passionate about building scalable cloud-native applications. Specialized in DevOps,
-              Docker, Kubernetes, and modern web development. Currently pursuing a degree in Computer
-              Science with expertise in backend, frontend, and infrastructure automation.
+              Passionate about building scalable web applications. 
+              Experienced in modern web development with practical knowledge of DevOps practices and Docker. 
+              Currently pursuing a degree in Computer Science with expertise spanning Backend, 
+              Frontend, and infrastructure automation.
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
               <a
-                href="https://blobs.vusercontent.net/blob/CV_Minosoa_RAVELONIRINA_Final%20%281%29-fjPz4XduiOYqluKt4QV6FF6fcN8bhB.pdf"
+                href="/CV_Minosoa_RAVELONIRINA.pdf"
                 download
                 className="rounded-lg bg-blue-600 px-8 py-3 font-medium text-white transition hover:bg-blue-700 active:scale-95"
               >
@@ -50,7 +51,7 @@ export default function Hero() {
             {/* Social Links */}
             <div className="mt-8 flex gap-6">
               <a
-                href="https://www.linkedin.com/in/minosoa-ravelonirina/"
+                href="https://www.linkedin.com/in/minosoa-ravelonirina-413b70303/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white/60 transition hover:text-white"

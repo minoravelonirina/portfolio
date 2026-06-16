@@ -11,8 +11,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Minosoa Ravelonirina | Full Stack Developer',
-  description: 'Full Stack Junior Developer - Specialized in DevOps, Cloud Architecture, and Modern Web Development',
-  generator: 'v0.app',
+  description: 'Full Stack Junior Developer - Specialized in Modern Web Development, Cloud Architecture, and DevOps Practices. Passionate about building scalable applications and automating deployment workflows.',
   icons: {
     icon: [
       {

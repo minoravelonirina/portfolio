@@ -39,7 +39,7 @@ export default function Contact() {
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Contact Info */}
           <div className="space-y-8">
-            <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 p-8">
+            <div className="rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8">
               <h3 className="mb-8 text-2xl font-bold text-white">Get in Touch</h3>
 
               <div className="space-y-6">
@@ -105,7 +105,7 @@ export default function Contact() {
                 <p className="mb-4 text-sm text-white/60">Connect with me</p>
                 <div className="flex gap-4">
                   <a
-                    href="https://www.linkedin.com/in/minosoa-ravelonirina/"
+                    href="https://www.linkedin.com/in/minosoa-ravelonirina-413b70303/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10 text-blue-400 transition hover:bg-blue-500/20"
@@ -130,7 +130,7 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 p-8">
+          <div className="rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-white">

@@ -3,26 +3,26 @@
 import { useState, useEffect } from 'react'
 
 const stats = [
-  { label: 'Years Experience', value: '03' },
+  { label: 'Years Experience', value: '~03' },
   { label: 'Projects Completed', value: '08+' },
-  { label: 'Technologies Mastered', value: '20+' },
+  { label: 'Tools & Technologies', value: '15+' },
 ]
 
 const approach = [
   {
     number: '01',
-    title: 'Understand Requirements',
-    description: 'Deep dive into your business needs and technical requirements to design the perfect solution.',
+    title: 'Understand the Product',
+    description: 'Clarify user needs, business goals, and technical constraints before designing the right solution.',
   },
   {
     number: '02',
-    title: 'Scalable Architecture',
-    description: 'Design cloud-native solutions that scale with your business while maintaining performance.',
+    title: 'Build Clean Interfaces',
+    description: 'Create responsive and accessible frontend experiences with React, Next.js, and modern UI practices.',
   },
   {
     number: '03',
-    title: 'Automation First',
-    description: 'Implement robust CI/CD pipelines and infrastructure automation for seamless deployments.',
+    title: 'Connect Reliable Systems',
+    description: 'Develop APIs, database integrations, and backend features that make applications stable and useful.',
   },
 ]
 
@@ -51,21 +51,20 @@ export default function About() {
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">About Me</h2>
           <p className="text-lg text-white/60">
-            Passionate computer science student specializing in DevOps, cloud architecture, and full-stack development
+            Passionate computer science student focused on full-stack development and modern web applications
           </p>
         </div>
 
-        <div className="mb-20 rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 p-8 sm:p-12">
+        <div className="mb-20 rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 sm:p-12">
           <p className="mb-6 text-lg leading-relaxed text-white/80">
-            I&apos;m a 3rd-year Computer Science student driven by a passion for building scalable, cloud-native
-            applications. With hands-on experience in containerization, orchestration, and CI/CD automation, I combine
-            frontend expertise with robust backend architecture and infrastructure automation to deliver complete
-            solutions.
+            I&apos;m a 3rd-year Computer Science student driven by a passion for building complete web applications.
+            I enjoy working across the full stack, from creating clean and responsive interfaces to designing APIs,
+            handling data, and connecting the frontend with reliable backend services.
           </p>
           <p className="text-lg leading-relaxed text-white/80">
-            My journey spans from automating deployment pipelines to designing highly available systems on cloud
-            platforms. I&apos;m excited to contribute to a team where I can apply my DevOps mindset to real-world
-            challenges and continue growing as a full-stack developer.
+            My experience includes React, Next.js, backend development, databases, and deployment workflows. I also
+            bring a DevOps mindset through Docker, CI/CD, and automation, which helps me build applications that are
+            not only functional, but also easier to deploy, maintain, and improve.
           </p>
         </div>
 
@@ -75,7 +74,7 @@ export default function About() {
             {approach.map((item, index) => (
               <div
                 key={index}
-                className={`transform rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 ${
+                className={`transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 ${
                   isVisible ? `translate-y-0 opacity-100 delay-${index * 100}` : 'translate-y-10 opacity-0'
                 }`}
                 style={{
@@ -94,7 +93,7 @@ export default function About() {
           {stats.map((stat, index) => (
             <div
               key={index}
-              className={`transform rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-white/0 p-8 text-center transition duration-500 hover:border-blue-500/50 ${
+              className={`transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 text-center transition duration-500 hover:border-blue-500/50 ${
                 isVisible ? `translate-y-0 opacity-100 delay-${(index + 3) * 100}` : 'translate-y-10 opacity-0'
               }`}
               style={{
