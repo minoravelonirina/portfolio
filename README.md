@@ -51,12 +51,12 @@ pnpm dev
 .
 ├── app/
 │   ├── layout.tsx          # Layout principal + métadonnées
-│   ├── page.tsx            # Page d'accueil (composition)
-│   └── globals.css         # Styles globaux + tokens
+│   ├── page.tsx            # Page d'accueil 
+│   └── globals.css         # Styles globaux
 ├── components/
 │   ├── navigation.tsx      # Barre de navigation
 │   ├── hero.tsx            # Section présentation
-│   ├── services.tsx        # Section services (4 cartes)
+│   ├── services.tsx        # Section services
 │   ├── about.tsx           # Section À propos
 │   ├── skills.tsx          # Section compétences
 │   ├── projects.tsx        # Section projets
