@@ -21,9 +21,9 @@ const projects = [
     url: 'https://github.com/minoravelonirina/mino-skincare'
   },
   {
-    title: 'Python CI/CD avec GitLab et Docker',
+    title: 'Python CI/CD with GitLab and Docker',
     description:
-      'Application Python volontairement minimale servant de support a une pipeline CI/CD complete sur GitLab CI, avec lint, tests, build et conteneurisation Docker.',
+      'Minimal Python application intentionally designed as a basis for a CI pipeline on GitLab CI, with linting, testing, build and Docker containerization.',
     technologies: ['Python', 'GitLab CI', 'Docker', 'Flake8', 'Pytest'],
     highlights: [
       'Pipeline GitLab CI en trois stages: lint, test, build',
