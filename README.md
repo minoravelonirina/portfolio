@@ -63,7 +63,7 @@ pnpm dev
 │   └── contact.tsx         # Section contact + formulaire
 ├── public/
 │   └── profile.png         # Photo de profil
-└── PORTFOLIO.md            # Documentation détaillée
+└── README.md            # Documentation détaillée
 ```
 
 ## 🎨 Palette de Couleurs
