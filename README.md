@@ -115,11 +115,10 @@ Chaque service avec animation au défilement.
 - Highly Available WordPress
 - Cloud OwnCloud Deployment
 - Marina - AI Translation App
-- PicoCTF 2026 Challenge
 
 ### 7. Contact
 - Informations de contact
-- Formulaire fonctionnel
+- Formulaire fonctionnel (intégration de l'API Resend)
 - Liens sociaux
 - Footer
 
