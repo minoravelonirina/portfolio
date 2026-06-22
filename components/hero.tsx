@@ -1,11 +1,26 @@
-'use client'
+"use client"
 
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
+import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 
 export default function Hero() {
+  const [isVisible, setIsVisible] = useState(false)
   const t = useTranslations('Hero')
-  const tHome = useTranslations('HomePage')
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true)
+      },
+      { threshold: 0.2 }
+    )
+
+    const el = document.getElementById('hero')
+    if (el) observer.observe(el)
+
+    return () => observer.disconnect()
+  }, [])
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden bg-black pt-32">
       {/* Background elements */}
@@ -17,19 +32,17 @@ export default function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Text Content */}
-          <div className="transform transition duration-1000 translate-y-0 opacity-100">
+          <div className={`transform transition duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
             <p className="mb-2 text-sm text-blue-400">{t('welcome')}</p>
             <h1 className="mb-6 text-5xl font-bold text-white sm:text-6xl">
-              I&apos;m Minosoa <br />
+              {t('me')}
+              <br />
               <span className="bg-linear-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
                 {t('role')}
               </span>
             </h1>
             <p className="mb-8 text-lg leading-relaxed text-white/70">
-              Passionate about building scalable web applications. 
-              Experienced in modern web development with practical knowledge of DevOps practices and Docker. 
-              Currently pursuing a degree in Computer Science with expertise spanning Backend, 
-              Frontend, and infrastructure automation.
+              {t('textContent')}
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row">
@@ -88,7 +101,7 @@ export default function Hero() {
           </div>
 
           {/* Image */}
-          <div className="transform transition duration-1000 delay-300 translate-y-0 opacity-100">
+          <div className={`transform transition duration-1000 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
             <div className="relative mx-auto flex h-96 w-80 items-center justify-center sm:h-96 sm:w-96">
               {/* Animated border */}
               <div className="absolute inset-0 rounded-3xl border border-blue-500/30" />
@@ -105,10 +118,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <h1>{tHome('title')}</h1>
-        <button>{tHome('cta')}</button>
       </div>
 
       {/* Scroll indicator */}

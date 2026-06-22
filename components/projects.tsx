@@ -5,50 +5,11 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import { useTranslations } from 'next-intl'
 
-const projects = [
-  {
-    title: 'Mino Skincare',
-    description:
-      'Full-stack skincare E-commerce application combining a brand showcase website with product catalog, authentication, cart management, orders, and a documented REST API.',
-    technologies: ['Next.js', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Docker', 'OpenAPI'],
-    highlights: [
-      'Catalogue produit responsive',
-      'Authentification JWT',
-      'Gestion du panier et des commandes',
-      'Modelisation Prisma',
-      'Documentation OpenAPI',
-    ],
-    image: '/mino skincare.png',
-    url: 'https://github.com/minoravelonirina/mino-skincare'
-  },
-  {
-    title: 'Python CI/CD avec GitLab et Docker',
-    description:
-      'Application Python volontairement minimale servant de support a une pipeline CI/CD complete sur GitLab CI, avec lint, tests, build et conteneurisation Docker.',
-    technologies: ['Python', 'GitLab CI', 'Docker', 'Flake8', 'Pytest'],
-    highlights: [
-      'Pipeline GitLab CI en trois stages: lint, test, build',
-      'Analyse statique du code Python avant validation',
-      'Execution des tests unitaires avec Pytest',
-      'Construction automatique de l image Docker',
-    ],
-    image: '/pipeline CI.png',
-    url: 'https://gitlab.com/mino-group/app-python'
-  },
-  {
-    title: 'Hazavao - AI Translation App',
-    description: 'Intelligent translation application integrating ChatGPT API with containerized deployment.',
-    technologies: ['Java', 'ChatGPT API', 'Docker', 'Backend Integration'],
-    highlights: ['API Integration', 'Container Packaging', 'Data Stream Management'],
-    image: '/hazavao.png',
-    url: 'https://github.com/minoravelonirina/HAZAVAO-STD23013'
-  }
-]
 
 export default function Projects() {
   const [visibleProjects, setVisibleProjects] = useState(new Set())
   const t = useTranslations('Projects')
-  const items = (t('items') as unknown) as any[]
+  const items = t.raw('items') as Array<{ title: string; description: string; technologies: string[]; highlights: string[]; image: string; url: string }> || []
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,7 +20,7 @@ export default function Projects() {
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     )
 
     document.querySelectorAll('[data-project]').forEach((el) => {
@@ -78,16 +39,26 @@ export default function Projects() {
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {items.map((project: any, index: number) => (
+          {items.map((
+            project: { title: string; 
+                      description: string; 
+                      technologies: string[]; 
+                      highlights: string[]; 
+                      image: string; 
+                      url: string 
+                    }, index: number) => (
             <div
               key={index}
               id={`project-${index}`}
               data-project
-              className="group transform rounded-2xl border border-white/10 bg-linear-to-br from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100"
+              className={`group transform rounded-2xl border border-white/10 bg-linear-to-br from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 ${
+                visibleProjects.has(`project-${index}`) ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              }`}
+              style={{ transitionDelay: visibleProjects.has(`project-${index}`) ? `${index * 100}ms` : '0ms' }}
             >
               <div className="mb-6 overflow-hidden rounded-xl border border-white/5 bg-white/5">
                 <Image
-                  src={project.image || '/placeholder.png'}
+                  src={project.image}
                   alt={project.title}
                   width={480}
                   height={320}
@@ -110,7 +81,7 @@ export default function Projects() {
 
               <Button className="absolute right-5 bottom-3" variant={'secondary'} size="lg">
                 <a
-                  href={project.url}
+                  href={project.url || '#'}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white/60 transition hover:text-white"

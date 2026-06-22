@@ -1,9 +1,10 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
 export default function Contact() {
+  const [isVisible, setIsVisible] = useState(false)
   const t = useTranslations('Contact')
   const tFooter = useTranslations('Footer')
 
@@ -50,19 +51,32 @@ export default function Contact() {
     }
   }
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setIsVisible(true)
+      },
+      { threshold: 0.2 }
+    )
+
+    const el = document.getElementById('contact')
+    if (el) observer.observe(el)
+
+    return () => observer.disconnect()
+  }, [])
   return (
     <section id="contact" className="relative bg-black py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">{t('title')}</h2>
-          <p className="text-lg text-white/60">{t('subtitle')}</p>
+          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">{t.raw('title')}</h2>
+          <p className="text-lg text-white/60">{t.raw('subtitle')}</p>
         </div>
 
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Contact Info */}
           <div className="space-y-8">
-            <div className="rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8">
-              <h3 className="mb-8 text-2xl font-bold text-white">{t('getInTouch')}</h3>
+            <div className={`rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: '100ms' }}>
+              <h3 className="mb-8 text-2xl font-bold text-white">{t.raw('getInTouch')}</h3>
 
               <div className="space-y-6">
                 <div className="flex gap-4">
@@ -77,7 +91,7 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-white/60">{t('email')}</p>
+                    <p className="text-sm text-white/60">{t.raw('email')}</p>
                     <a href="mailto:minoravelonirina@gmail.com" className="text-white hover:text-blue-400">
                       minoravelonirina@gmail.com
                     </a>
@@ -96,7 +110,7 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-white/60">{t('phone') || 'Phone'}</p>
+                    <p className="text-sm text-white/60">{t.raw('phone') || 'Phone'}</p>
                     <a href="tel:+261321878009" className="text-white hover:text-blue-400">
                       +261 32 18 780 09
                     </a>
@@ -116,7 +130,7 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-white/60">{t('location') || 'Location'}</p>
+                    <p className="text-sm text-white/60">{t.raw('location') || 'Location'}</p>
                     <p className="text-white">Andranoro, Antananarivo, Madagascar</p>
                   </div>
                 </div>
@@ -124,7 +138,7 @@ export default function Contact() {
 
               {/* Social Links */}
               <div className="mt-8 border-t border-white/10 pt-8">
-                <p className="mb-4 text-sm text-white/60">{t('connect') || 'Connect with me'}</p>
+                <p className="mb-4 text-sm text-white/60">{t.raw('connect') || 'Connect with me'}</p>
                 <div className="flex gap-4">
                   <a
                     href="https://www.linkedin.com/in/minosoa-ravelonirina-413b70303/"
@@ -152,11 +166,11 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <div className="rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8">
+          <div className={`rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`} style={{ transitionDelay: '200ms' }}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-white">
-                  {t('name')}
+                  {t.raw('name')}
                 </label>
                 <input
                   type="text"
@@ -166,13 +180,13 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="mt-2 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition focus:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                  placeholder={t('name')}
+                  placeholder={t.raw('name')}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-white">
-                  {t('email')}
+                  {t.raw('email')}
                 </label>
                 <input
                   type="email"
@@ -188,7 +202,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-white">
-                  {t('message')}
+                  {t.raw('message')}
                 </label>
                 <textarea
                   id="message"
@@ -198,7 +212,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className="mt-2 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition focus:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                  placeholder={t('message')}
+                  placeholder={t.raw('message')}
                 />
               </div>
 
@@ -207,11 +221,11 @@ export default function Contact() {
                 disabled={isSending}
                 className="w-full rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700 active:scale-95"
               >
-                {isSending ? t('sending') : t('send')}
+                {isSending ? t.raw('sending') : t.raw('send')}
               </button>
 
               {submitted && (
-                <div className="rounded-lg bg-green-500/10 p-4 text-green-400">{t('thanks')}</div>
+                <div className="rounded-lg bg-green-500/10 p-4 text-green-400">{t.raw('thanks')}</div>
               )}
 
               {error && (

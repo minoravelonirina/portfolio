@@ -25,7 +25,7 @@ const skillCategories = [
 export default function Skills() {
   const [visibleCategories, setVisibleCategories] = useState(new Set())
   const t = useTranslations('Skills')
-  const categories = (t('categories') as unknown) as any[]
+  const categories = t.raw('categories') as Array<{ title: string; skills: string[] }> || skillCategories
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,7 +36,7 @@ export default function Skills() {
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     )
 
     document.querySelectorAll('[data-skill-category]').forEach((el) => {
@@ -60,7 +60,10 @@ export default function Skills() {
               key={index}
               id={`skill-${index}`}
               data-skill-category
-              className={`group transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100`}
+              className={`group transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 ${
+                visibleCategories.has(`skill-${index}`) ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+              }`}
+              style={{ transitionDelay: visibleCategories.has(`skill-${index}`) ? `${index * 80}ms` : '0ms' }}
             >
               <h3 className="mb-6 text-lg font-semibold text-white">{category.title}</h3>
               <div className="space-y-3">

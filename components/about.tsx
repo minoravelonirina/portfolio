@@ -3,29 +3,6 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
-const stats = [
-  { label: 'Years Experience', value: '~03' },
-  { label: 'Projects Completed', value: '08+' },
-  { label: 'Tools & Technologies', value: '15+' },
-]
-
-const approach = [
-  {
-    number: '01',
-    title: 'Understand the Product',
-    description: 'Clarify user needs, business goals, and technical constraints before designing the right solution.',
-  },
-  {
-    number: '02',
-    title: 'Build Clean Interfaces',
-    description: 'Create responsive and accessible frontend experiences with React, Next.js, and modern UI practices.',
-  },
-  {
-    number: '03',
-    title: 'Connect Reliable Systems',
-    description: 'Develop APIs, database integrations, and backend features that make applications stable and useful.',
-  },
-]
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false)
@@ -38,7 +15,7 @@ export default function About() {
           setIsVisible(true)
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     )
 
     const section = document.getElementById('about')
@@ -57,14 +34,10 @@ export default function About() {
 
         <div className="mb-20 rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 sm:p-12">
           <p className="mb-6 text-lg leading-relaxed text-white/80">
-            I&apos;m a 3rd-year Computer Science student driven by a passion for building complete web applications.
-            I enjoy working across the full stack, from creating clean and responsive interfaces to designing APIs,
-            handling data, and connecting the frontend with reliable backend services.
+            {t('pContent1')}
           </p>
           <p className="text-lg leading-relaxed text-white/80">
-            My experience includes React, Next.js, backend development, databases, and deployment workflows. I also
-            bring a DevOps mindset through Docker, CI/CD, and automation, which helps me build applications that are
-            not only functional, but also easier to deploy, maintain, and improve.
+            {t('pContent2')}
           </p>
         </div>
 

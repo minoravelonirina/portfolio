@@ -4,28 +4,12 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 
-const services = [
-  {
-    title: 'Frontend Development',
-    description: 'Creating responsive, accessible, and polished interfaces with modern web technologies.',
-    image: '/frontend.jpg',
-  },
-  {
-    title: 'Backend Development',
-    description: 'Building reliable APIs, server-side features, and data flows for scalable applications.',
-    image: '/backend.jpg',
-  },
-  {
-    title: 'DevOps & Automation',
-    description: 'Automating deployment workflows and preparing applications for cloud-native environments.',
-    image: '/devops.jpg',
-  },
-]
+
 
 export default function Services() {
   const [visibleCards, setVisibleCards] = useState(new Set())
   const t = useTranslations('Services')
-  const items = (t('items') as unknown) as any[]
+  const items = (t.raw('items') as Array<{ title: string; description: string; image: string }>) || []
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,7 +20,7 @@ export default function Services() {
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.2 }
     )
 
     document.querySelectorAll('[data-service-card]').forEach((el) => {
@@ -60,9 +44,10 @@ export default function Services() {
               key={index}
               id={`service-${index}`}
               data-service-card
-              className={`group transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 translate-y-0 opacity-100 ${
-                visibleCards.has(`service-${index}`) ? 'translate-y-0' : ''
+              className={`group transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 hover:from-blue-500/10 ${
+                visibleCards.has(`service-${index}`) ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
               }`}
+              style={{ transitionDelay: visibleCards.has(`service-${index}`) ? `${index * 100}ms` : '0ms' }}
             >
               <div className="mb-6 overflow-hidden rounded-xl border border-white/10 bg-white/5">
                 <Image

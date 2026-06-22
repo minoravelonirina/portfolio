@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useState, type CSSProperties, type MouseEvent } from 'react'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -77,46 +77,51 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Desktop Navigation */}
-        <div className="hidden space-x-8 md:flex">
-          {navItems.map((item) => (
-            <NavMenuButton
-              key={item.id}
-              label={tNav(item.label.toLowerCase())}
-              sectionId={item.id}
-              onSelect={scrollToSection}
-            />
-          ))}
-        </div>
+          {/* Desktop / Tablet Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <div className="flex items-center space-x-8">
+              {navItems.map((item) => (
+                <NavMenuButton
+                  key={item.id}
+                  label={tNav(item.label.toLowerCase())}
+                  sectionId={item.id}
+                  onSelect={scrollToSection}
+                />
+              ))}
+            </div>
 
-        {/* CTA Button */}
-        <div className="flex items-center gap-4">
-          <a
-            href="/CV_Minosoa_RAVELONIRINA.pdf"
-            download
-            className="hidden rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20 sm:inline-block"
-          >
-            {tHero('downloadCv')}
-          </a>
+            <div className="ml-auto flex items-center gap-4">
+              <a
+                href="/CV_Minosoa_RAVELONIRINA.pdf"
+                download
+                className="rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20"
+              >
+                {tHero('downloadCv')}
+              </a>
+              <LanguageSwitcher />
+            </div>
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden"
-            aria-label="Toggle menu"
-          >
-            <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          {/* Mobile Header Controls */}
+          <div className="flex md:hidden items-center gap-3">
+            <LanguageSwitcher />
 
-          <LanguageSwitcher/>
-        </div>
+            {/* Mobile Menu Button */}
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className=""
+              aria-label="Toggle menu"
+            >
+              <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
       </div>
 
       {/* Mobile Menu */}
@@ -133,6 +138,19 @@ export default function Navigation() {
               />
             ))}
           </div>
+            <div className="pt-2 border-t border-white/6 flex flex-col gap-3">
+              <a
+                href="/CV_Minosoa_RAVELONIRINA.pdf"
+                download
+                className="rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+              >
+                {tHero('downloadCv')}
+              </a>
+
+              <div className="flex items-center gap-2">
+                <LanguageSwitcher />
+              </div>
+            </div>
         </div>
       )}
     </nav>
