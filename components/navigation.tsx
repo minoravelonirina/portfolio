@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, type CSSProperties, type MouseEvent } from 'react'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const navItems = [
   { label: 'Home', id: 'hero' },
@@ -110,6 +111,8 @@ export default function Navigation() {
               )}
             </svg>
           </button>
+
+          <LanguageSwitcher/>
         </div>
       </div>
 

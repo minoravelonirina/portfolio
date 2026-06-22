@@ -1,8 +1,11 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
 import Image from 'next/image'
+import { Props, ScriptProps } from 'next/script'
 
 export default function Hero() {
+  const t = useTranslations('HomePage')
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden bg-black pt-32">
       {/* Background elements */}
@@ -102,6 +105,10 @@ export default function Hero() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <h1>{t('title')}</h1>
+        <button>{t('cta')}</button>
       </div>
 
       {/* Scroll indicator */}
