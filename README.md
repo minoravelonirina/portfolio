@@ -63,7 +63,7 @@ pnpm dev
 │   └── contact.tsx         # Section contact + formulaire
 ├── public/
 │   └── profile.png         # Photo de profil
-└── PORTFOLIO.md            # Documentation détaillée
+└── README.md            # Documentation détaillée
 ```
 
 ## 🎨 Palette de Couleurs
@@ -95,7 +95,6 @@ pnpm dev
 - Full Stack Development
 - Cloud Infrastructure
 - DevOps & Automation
-- System Administration
 
 Chaque service avec animation au défilement.
 
@@ -112,14 +111,13 @@ Chaque service avec animation au défilement.
 - **Outils**: Git, Linux, PostgreSQL, MySQL
 
 ### 6. Projets
-- Highly Available WordPress
-- Cloud OwnCloud Deployment
-- Marina - AI Translation App
-- PicoCTF 2026 Challenge
+- Mino Skincare
+- Python CI/CD with GitLab and Docker
+- Hazavao - AI Translation App
 
 ### 7. Contact
 - Informations de contact
-- Formulaire fonctionnel
+- Formulaire fonctionnel (intégration de l'API Resend)
 - Liens sociaux
 - Footer
 
