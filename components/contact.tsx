@@ -1,8 +1,12 @@
-'use client'
+"use client"
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 
 export default function Contact() {
+  const t = useTranslations('Contact')
+  const tFooter = useTranslations('Footer')
+
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -50,17 +54,15 @@ export default function Contact() {
     <section id="contact" className="relative bg-black py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">Let&apos;s Talk</h2>
-          <p className="text-lg text-white/60">
-            I&apos;m always open to new opportunities and collaborations. Let&apos;s connect!
-          </p>
+          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">{t('title')}</h2>
+          <p className="text-lg text-white/60">{t('subtitle')}</p>
         </div>
 
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Contact Info */}
           <div className="space-y-8">
             <div className="rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8">
-              <h3 className="mb-8 text-2xl font-bold text-white">Get in Touch</h3>
+              <h3 className="mb-8 text-2xl font-bold text-white">{t('getInTouch')}</h3>
 
               <div className="space-y-6">
                 <div className="flex gap-4">
@@ -75,7 +77,7 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-white/60">Email</p>
+                    <p className="text-sm text-white/60">{t('email')}</p>
                     <a href="mailto:minoravelonirina@gmail.com" className="text-white hover:text-blue-400">
                       minoravelonirina@gmail.com
                     </a>
@@ -94,7 +96,7 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-white/60">Phone</p>
+                    <p className="text-sm text-white/60">{t('phone') || 'Phone'}</p>
                     <a href="tel:+261321878009" className="text-white hover:text-blue-400">
                       +261 32 18 780 09
                     </a>
@@ -114,7 +116,7 @@ export default function Contact() {
                     </svg>
                   </div>
                   <div>
-                    <p className="text-sm text-white/60">Location</p>
+                    <p className="text-sm text-white/60">{t('location') || 'Location'}</p>
                     <p className="text-white">Andranoro, Antananarivo, Madagascar</p>
                   </div>
                 </div>
@@ -122,7 +124,7 @@ export default function Contact() {
 
               {/* Social Links */}
               <div className="mt-8 border-t border-white/10 pt-8">
-                <p className="mb-4 text-sm text-white/60">Connect with me</p>
+                <p className="mb-4 text-sm text-white/60">{t('connect') || 'Connect with me'}</p>
                 <div className="flex gap-4">
                   <a
                     href="https://www.linkedin.com/in/minosoa-ravelonirina-413b70303/"
@@ -154,7 +156,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-white">
-                  Name
+                  {t('name')}
                 </label>
                 <input
                   type="text"
@@ -164,13 +166,13 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   className="mt-2 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition focus:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                  placeholder="Your name"
+                  placeholder={t('name')}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-white">
-                  Email
+                  {t('email')}
                 </label>
                 <input
                   type="email"
@@ -186,7 +188,7 @@ export default function Contact() {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-white">
-                  Message
+                  {t('message')}
                 </label>
                 <textarea
                   id="message"
@@ -196,7 +198,7 @@ export default function Contact() {
                   required
                   rows={5}
                   className="mt-2 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-white/40 transition focus:border-blue-500/50 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                  placeholder="Your message..."
+                  placeholder={t('message')}
                 />
               </div>
 
@@ -205,13 +207,11 @@ export default function Contact() {
                 disabled={isSending}
                 className="w-full rounded-lg bg-blue-600 px-6 py-3 font-medium text-white transition hover:bg-blue-700 active:scale-95"
               >
-                {isSending ? 'Sending...' : 'Send Message'}
+                {isSending ? t('sending') : t('send')}
               </button>
 
               {submitted && (
-                <div className="rounded-lg bg-green-500/10 p-4 text-green-400">
-                  Thanks for reaching out! I&apos;ll get back to you soon.
-                </div>
+                <div className="rounded-lg bg-green-500/10 p-4 text-green-400">{t('thanks')}</div>
               )}
 
               {error && (
@@ -227,9 +227,7 @@ export default function Contact() {
       {/* Footer */}
       <div className="mt-20 border-t border-white/10 pt-12">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-white/60">
-            &copy; 2024 Minosoa Ravelonirina. All rights reserved. Built with Next.js, React & Tailwind CSS.
-          </p>
+          <p className="text-white/60">{tFooter('copyright')}</p>
         </div>
       </div>
     </section>

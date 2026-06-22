@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Button } from './ui/button'
+import { useTranslations } from 'next-intl'
 
 const projects = [
   {
@@ -46,6 +47,8 @@ const projects = [
 
 export default function Projects() {
   const [visibleProjects, setVisibleProjects] = useState(new Set())
+  const t = useTranslations('Projects')
+  const items = (t('items') as unknown) as any[]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,12 +73,12 @@ export default function Projects() {
     <section id="projects" className="relative bg-black py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">Featured Projects</h2>
-          <p className="mb-16 text-lg text-white/60">Real-world implementations demonstrating my expertise</p>
+          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">{t('featured')}</h2>
+          <p className="mb-16 text-lg text-white/60">{t('description')}</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {projects.map((project, index) => (
+          {items.map((project: any, index: number) => (
             <div
               key={index}
               id={`project-${index}`}
@@ -84,7 +87,7 @@ export default function Projects() {
             >
               <div className="mb-6 overflow-hidden rounded-xl border border-white/5 bg-white/5">
                 <Image
-                  src={project.image}
+                  src={project.image || '/placeholder.png'}
                   alt={project.title}
                   width={480}
                   height={320}
@@ -95,7 +98,7 @@ export default function Projects() {
               <p className="mb-6 text-white/70">{project.description}</p>
 
               <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech, i) => (
+                {project.technologies.map((tech: string, i: number) => (
                   <span
                     key={i}
                     className="rounded-full bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-400 ring-1 ring-blue-500/20"
@@ -105,7 +108,7 @@ export default function Projects() {
                 ))}
               </div>
 
-              <Button className="absolute right-5 bottom-3" variant={'secondary'} size='lg'> 
+              <Button className="absolute right-5 bottom-3" variant={'secondary'} size="lg">
                 <a
                   href={project.url}
                   target="_blank"

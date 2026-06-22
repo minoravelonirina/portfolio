@@ -2,6 +2,7 @@
 
 import { useState, type CSSProperties, type MouseEvent } from 'react'
 import LanguageSwitcher from './LanguageSwitcher'
+import { useTranslations } from 'next-intl'
 
 const navItems = [
   { label: 'Home', id: 'hero' },
@@ -47,6 +48,8 @@ function NavMenuButton({ label, sectionId, isMobile = false, onSelect }: NavMenu
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
+  const tNav = useTranslations('Nav')
+  const tHero = useTranslations('Hero')
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id)
@@ -79,7 +82,7 @@ export default function Navigation() {
           {navItems.map((item) => (
             <NavMenuButton
               key={item.id}
-              label={item.label}
+              label={tNav(item.label.toLowerCase())}
               sectionId={item.id}
               onSelect={scrollToSection}
             />
@@ -93,7 +96,7 @@ export default function Navigation() {
             download
             className="hidden rounded-lg border border-white/30 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/20 sm:inline-block"
           >
-            Download CV
+            {tHero('downloadCv')}
           </a>
 
           {/* Mobile Menu Button */}
@@ -123,7 +126,7 @@ export default function Navigation() {
             {navItems.map((item) => (
               <NavMenuButton
                 key={item.id}
-                label={item.label}
+                label={tNav(item.label.toLowerCase())}
                 sectionId={item.id}
                 isMobile
                 onSelect={scrollToSection}

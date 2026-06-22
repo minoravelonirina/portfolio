@@ -1,6 +1,7 @@
-'use client'
+"use client"
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 const skillCategories = [
   {
@@ -23,6 +24,8 @@ const skillCategories = [
 
 export default function Skills() {
   const [visibleCategories, setVisibleCategories] = useState(new Set())
+  const t = useTranslations('Skills')
+  const categories = (t('categories') as unknown) as any[]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,14 +50,12 @@ export default function Skills() {
     <section id="skills" className="relative bg-black py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">Skills & Expertise</h2>
-          <p className="mb-16 text-lg text-white/60">
-            A comprehensive toolkit for building modern, scalable applications
-          </p>
+          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">{t('title')}</h2>
+          <p className="mb-16 text-lg text-white/60">{t('subtitle')}</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {skillCategories.map((category, index) => (
+          {categories.map((category: any, index: number) => (
             <div
               key={index}
               id={`skill-${index}`}
@@ -63,11 +64,8 @@ export default function Skills() {
             >
               <h3 className="mb-6 text-lg font-semibold text-white">{category.title}</h3>
               <div className="space-y-3">
-                {category.skills.map((skill, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center gap-2 transition duration-300 translate-x-0 opacity-100"
-                  >
+                {category.skills.map((skill: string, i: number) => (
+                  <div key={i} className="flex items-center gap-2 transition duration-300 translate-x-0 opacity-100">
                     <span className="h-2 w-2 rounded-full bg-linear-to-r from-blue-400 to-purple-500" />
                     <span className="text-sm text-white/80">{skill}</span>
                   </div>

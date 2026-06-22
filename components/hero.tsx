@@ -1,11 +1,11 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import Image from 'next/image'
-import { Props, ScriptProps } from 'next/script'
+import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 export default function Hero() {
-  const t = useTranslations('HomePage')
+  const t = useTranslations('Hero')
+  const tHome = useTranslations('HomePage')
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden bg-black pt-32">
       {/* Background elements */}
@@ -18,11 +18,11 @@ export default function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Text Content */}
           <div className="transform transition duration-1000 translate-y-0 opacity-100">
-            <p className="mb-2 text-sm text-blue-400">Welcome to my portfolio</p>
+            <p className="mb-2 text-sm text-blue-400">{t('welcome')}</p>
             <h1 className="mb-6 text-5xl font-bold text-white sm:text-6xl">
               I&apos;m Minosoa <br />
               <span className="bg-linear-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                Full Stack Developer
+                {t('role')}
               </span>
             </h1>
             <p className="mb-8 text-lg leading-relaxed text-white/70">
@@ -38,7 +38,7 @@ export default function Hero() {
                 download
                 className="rounded-lg bg-blue-600 px-8 py-3 font-medium text-white transition hover:bg-blue-700 active:scale-95"
               >
-                Download CV
+                {t('downloadCv')}
               </a>
               <button
                 onClick={() => {
@@ -47,7 +47,7 @@ export default function Hero() {
                 }}
                 className="rounded-lg border border-white/20 px-8 py-3 font-medium text-white transition hover:bg-white/10"
               >
-                Get in Touch
+                {t('getInTouch')}
               </button>
             </div>
 
@@ -107,8 +107,8 @@ export default function Hero() {
         </div>
       </div>
       <div>
-        <h1>{t('title')}</h1>
-        <button>{t('cta')}</button>
+        <h1>{tHome('title')}</h1>
+        <button>{tHome('cta')}</button>
       </div>
 
       {/* Scroll indicator */}

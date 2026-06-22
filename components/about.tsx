@@ -1,6 +1,7 @@
-'use client'
+"use client"
 
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 const stats = [
   { label: 'Years Experience', value: '~03' },
@@ -28,6 +29,7 @@ const approach = [
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false)
+  const t = useTranslations('About')
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,10 +51,8 @@ export default function About() {
     <section id="about" className="relative bg-black py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">About Me</h2>
-          <p className="text-lg text-white/60">
-            Passionate computer science student focused on full-stack development and modern web applications
-          </p>
+          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">{t('title')}</h2>
+          <p className="text-lg text-white/60">{t('subtitle')}</p>
         </div>
 
         <div className="mb-20 rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 sm:p-12">
@@ -69,9 +69,9 @@ export default function About() {
         </div>
 
         <div className="mb-20">
-          <h3 className="mb-12 text-center text-2xl font-bold text-white">My Approach</h3>
+          <h3 className="mb-12 text-center text-2xl font-bold text-white">{t('approachTitle')}</h3>
           <div className="grid gap-8 md:grid-cols-3">
-            {approach.map((item, index) => (
+            {[0, 1, 2].map((index) => (
               <div
                 key={index}
                 className={`transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 transition duration-500 hover:border-blue-500/50 ${
@@ -81,16 +81,16 @@ export default function About() {
                   transitionDelay: isVisible ? `${index * 100}ms` : '0ms',
                 }}
               >
-                <div className="mb-4 text-4xl font-bold text-blue-500">{item.number}</div>
-                <h4 className="mb-3 text-lg font-semibold text-white">{item.title}</h4>
-                <p className="text-white/60">{item.description}</p>
+                <div className="mb-4 text-4xl font-bold text-blue-500">{t(`approach.${index}.number`)}</div>
+                <h4 className="mb-3 text-lg font-semibold text-white">{t(`approach.${index}.title`)}</h4>
+                <p className="text-white/60">{t(`approach.${index}.description`)}</p>
               </div>
             ))}
           </div>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {stats.map((stat, index) => (
+          {[0, 1, 2].map((index) => (
             <div
               key={index}
               className={`transform rounded-2xl border border-white/10 bg-linear-to-b from-white/5 to-white/0 p-8 text-center transition duration-500 hover:border-blue-500/50 ${
@@ -100,8 +100,8 @@ export default function About() {
                 transitionDelay: isVisible ? `${(index + 3) * 100}ms` : '0ms',
               }}
             >
-              <div className="mb-3 text-4xl font-bold text-blue-500">{stat.value}</div>
-              <p className="text-white/60">{stat.label}</p>
+              <div className="mb-3 text-4xl font-bold text-blue-500">{t(`stats.${index}.value`)}</div>
+              <p className="text-white/60">{t(`stats.${index}.label`)}</p>
             </div>
           ))}
         </div>

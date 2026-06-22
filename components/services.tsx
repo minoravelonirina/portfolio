@@ -1,7 +1,8 @@
-'use client'
+"use client"
 
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
 
 const services = [
   {
@@ -23,6 +24,8 @@ const services = [
 
 export default function Services() {
   const [visibleCards, setVisibleCards] = useState(new Set())
+  const t = useTranslations('Services')
+  const items = (t('items') as unknown) as any[]
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -47,14 +50,12 @@ export default function Services() {
     <section id="services" className="relative bg-black py-20 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">Services</h2>
-          <p className="mb-16 text-lg text-white/60">
-            Focused solutions across web development, backend systems, and deployment automation
-          </p>
+          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">{t('title')}</h2>
+          <p className="mb-16 text-lg text-white/60">{t('subtitle')}</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {services.map((service, index) => (
+          {items.map((service: any, index: number) => (
             <div
               key={index}
               id={`service-${index}`}
